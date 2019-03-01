@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DecSpace - Method Catalog - SRF</title>
+
+    <meta name = 'viewport' content = 'width = device-width, initial-scale = 1'>
+
+    <!-- CSS Stylesheet -->
+    <link rel = 'stylesheet' type = 'text/css' href = '../../css/index.css'/>
+    <link rel = 'stylesheet' type = 'text/css' href = '../../css/srf.css'/>
+
+    <!-- jQuery -->
+    <script type = 'text/javascript' src = '../../js/shared/jquery-3.1.0.js'></script>
+    <script type = 'text/javascript' src = '../../js/shared/jquery-ui-1.12.0/jquery-ui.js'></script>
+
+    <!-- AngularJS -->
+    <script src = '../../js/shared/angular.min.js'></script>
+
+    <!-- AngularJS Modules -->
+    <script src = '../../js/app.js'></script>
+
+    <!-- AngularJS Controllers -->
+    <script src = '../../js/controllers/method-catalog/MethodController.js'></script>
+
+    <!-- Bootstrap -->
+    <link rel = 'stylesheet' href = '../../js/shared/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>
+    <script type = 'text/javascript' src = '../../js/shared/bootstrap-3.3.7-dist/js/bootstrap.js'></script>
+
+    <!-- Google Web Fonts -->
+    <link href = 'https://fonts.googleapis.com/css?family=Open+Sans:400,600i' rel = 'stylesheet'>
+
+    <!-- ng-draggable module -->
+    <script src = '../../js/shared/ng-draggable/ngDraggable.js'></script>
+  </head>
+
+  <body ng-app = 'decspace' ng-controller = 'MethodController'>
+
+    <!-- Navigation Bar -->
+    <nav class = 'navbar navbar-custom navbar-fixed-top'>
+      <div class = 'container'>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class = 'navbar-header'>
+          <button type = 'button' class = 'navbar-toggle collapsed' data-toggle = 'collapse' data-target = '#top-navbar' aria-expanded = 'false'>
+            <span class = 'sr-only'>Toggle navigation</span>
+            <span class = 'icon-bar'></span>
+            <span class = 'icon-bar'></span>
+            <span class = 'icon-bar'></span>
+          </button>
+          <!-- Title -->
+          <a class = 'navbar-brand' href = '../../index.html'>DecSpace</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class = 'collapse navbar-collapse' id = 'top-navbar'>
+          <!-- About, FAQ and Contact Us links. Sign Up and Log In buttons. -->
+          <ul class = 'nav navbar-nav navbar-right'>
+            <li ng-if = 'loggedIn' ng-cloak>
+              <p class = 'navbar-text' style = 'font-weight: 600; font-style: italic' ng-if = '!unregistered_user' ng-cloak>Welcome, {{name}}!</p>
+
+              <p class = 'navbar-text' style = 'font-weight: 600; font-style: italic' ng-if = 'unregistered_user' ng-cloak>Welcome!</p>
+            </li>
+            
+            <li ng-if = 'loggedIn' ng-cloak><a href = '../projects/projects.html'>My Projects</a></li>
+            
+            <li ng-if = 'loggedIn' ng-cloak><a href = '../projects/public-projects.html'>Public Projects</a></li>
+            
+            <li><a href = '../homepage/about.html'>About</a></li>
+            
+            <li class = 'active'><a href = 'method-catalog.html'>Method Catalog</a></li>
+            
+            <li><a href = '../homepage/faq.html'>FAQ</a></li>
+            
+            <li><a href = '../homepage/contactus.html'>Contact Us</a></li>
+
+            <li ng-if = 'loggedIn'><a href = '../settings/settings.html'>Settings</a></li>
+
+            <li><a href = '../administrator/administrator.html' ng-if = 'username == "admin@admin"' ng-cloak>Administrator</a></li>
+            
+            <li ng-if = '!loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'toSignUp()'>
+                <span class = 'glyphicon glyphicon-user'></span>
+                Sign Up
+              </button>
+            </li>
+
+            <li ng-if = '!loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'toLogIn()' style = 'margin-left: 5%'>
+                <span class = 'glyphicon glyphicon-log-in'></span>
+                Log In
+              </button>
+            </li>
+
+            <li ng-if = 'loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'logOut()'>
+                <span class = 'glyphicon glyphicon-log-out'></span>
+                Log Out
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id = 'main-content' class = 'container'>
+
+      <br>
+
+      <p class = 'header-1'>Method Catalog - SRF</p>
+
+      <br>
+
+      <!-- Main tabs - Method Description and Example -->
+      <ul class = 'nav nav-tabs nav-justified'>
+        <li role = 'presentation' class = 'active'><a data-toggle = 'tab' href= '#description'>Description</a></li>
+        <li role = 'presentation'><a data-toggle = 'tab' href= '#example'>Example</a></li>
+      </ul>
+
+      <div class = 'tab-content'>
+        <!-- Method Description -->
+        <div id = 'description' class = 'tab-pane fade in active' style = 'text-align: left'>
+
+          <br>
+
+          <p>Mainly used for determining the weights of a certain criteria set with a revised Simos' procedure.</p>
+          <p>It is available as a standalone method, but it is also integrated with other methods that can make use of it.</p>
+
+        </div>
+
+        <!-- Example -->
+        <div id = 'example' class = 'tab-pane fade'>
+
+          <br>
+
+          <!-- Export Button -->
+          <button type = 'button' class = 'btn btn-primary' title = 'Download SRF Example' ng-click = 'exportExampleData("SRF")' style = 'float: left'>
+            <span class = 'glyphicon glyphicon-download-alt icon-large'></span>
+          </button>
+
+          <br><br>
+
+          <!-- Example of Criteria -->
+          <p class = 'header-5'>Criteria</p>
+
+          <table class = 'table table-bordered table-hover'>
+            <thead>
+              <tr>
+                <th class = 'text-center'>Criterion Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0-100</td>
+              </tr>
+              <tr>
+                <td>CO2</td>
+              </tr>
+              <tr>
+                <td>Consumption</td>
+              </tr>
+              <tr>
+                <td>Power</td>
+              </tr>
+              <tr>
+                <td>Price</td>
+              </tr>
+              <tr>
+                <td>Safety</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br>
+
+          <!-- Example of Ranking -->
+          <p class = 'header-5'>Ranking</p>
+
+          <div class = 'row'>
+            <div class = 'col-md-2'>Most Important</div>
+
+            <div class = 'col-md-9 srf-drop' ng-drop = 'true'>
+              <ul class = 'draggable-objects'>
+                <li>
+                  <div class = 'criteria-card undraggable-card' title = 'Consumption'>Consumption</div>
+                </li>
+                <li>
+                  <div class = 'criteria-card undraggable-card' title = 'Safety'>Safety</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <br>
+
+          <div class = 'row'>
+            <div class = 'col-md-2'></div>
+
+            <div class = 'col-md-9 srf-drop' ng-drop = 'true'>
+              <ul class = 'draggable-objects'>
+                <li>
+                  <div class = 'white-card undraggable-card'></div>
+                </li>
+                <li>
+                  <div class = 'white-card undraggable-card'></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <br>
+
+          <div class = 'row'>
+            <div class = 'col-md-2'></div>
+
+            <div class = 'col-md-9 srf-drop' ng-drop = 'true'>
+              <ul class = 'draggable-objects'>
+                <li>
+                  <div class = 'criteria-card undraggable-card' title = '0-100'>0-100</div>
+                </li>
+                <li>
+                  <div class = 'criteria-card undraggable-card' title = 'Power'>Power</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <br>
+
+          <div class = 'row'>
+            <div class = 'col-md-2'></div>
+
+            <div class = 'col-md-9 srf-drop' ng-drop = 'true'>
+              <ul class = 'draggable-objects'>
+                <li>
+                  <div class = 'criteria-card undraggable-card' title = 'Price'>Price</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <br>
+
+          <div class = 'row'>
+            <div class = 'col-md-2'></div>
+
+            <div class = 'col-md-9 srf-drop' ng-drop = 'true'>
+              <ul class = 'draggable-objects'>
+                <li>
+                  <div class = 'white-card undraggable-card'></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <br>
+
+          <div class = 'row'>
+            <div class = 'col-md-2'>Least Important</div>
+
+            <div class = 'col-md-9 srf-drop' ng-drop = 'true'>
+              <ul class = 'draggable-objects'>
+                <li>
+                  <div class = 'criteria-card undraggable-card' title = 'CO2'>CO2</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- Example of Other Parameters -->
+          <p class = 'header-5'>Other Parameters</p>
+
+          <!-- Example of Ratio Z -->
+          <p><strong>Ratio Z</strong>: 4</p>
+
+          <!-- Example of Number Of Decimal Places -->
+          <p><strong>Number Of Decimal Places</strong>: 1</p>
+
+          <!-- Example of Weight Type -->
+          <p><strong>Weight Type</strong>: Normalized</p>
+
+          <br>
+
+          <!-- Example of Results -->
+          <p class = 'header-5'>Results</p>
+
+          <table class = 'table table-bordered table-hover'>
+            <thead>
+              <tr>
+                <th class = 'text-center'>Criterion Name</th>
+                <th class = 'text-center'>Normalized Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0-100</td>
+                <td>15.6</td>
+              </tr>
+              <tr>
+                <td>CO2</td>
+                <td>6.2</td>
+              </tr>
+              <tr>
+                <td>Consumption</td>
+                <td>25</td>
+              </tr>
+              <tr>
+                <td>Power</td>
+                <td>15.6</td>
+              </tr>
+              <tr>
+                <td>Price</td>
+                <td>12.5</td>
+              </tr>
+              <tr>
+                <td>Safety</td>
+                <td>25.1</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

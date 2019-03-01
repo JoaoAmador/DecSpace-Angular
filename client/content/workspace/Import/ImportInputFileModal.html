@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import Input File Modal</title>
+</head>
+<body>
+<div class = 'modal fade' id = 'import-input-file-modal' role = 'dialog'>
+    <div class = 'modal-dialog'>
+        <div class = 'modal-content'>
+            <div class = 'modal-header'>
+                <button type = 'button' class = 'close' data-dismiss = 'modal'>&times;</button>
+                <h4 class = 'modal-title'>Import Input File</h4>
+            </div>
+            <div class = 'modal-body'>
+
+                <div class = 'row'>
+                    <div class = 'col-md-4'></div>
+                    <input id = 'input-files' type = 'file' multiple>
+                </div>
+
+                <br>
+
+                <div class = 'row'>
+                    <div class = 'col-md-5'></div>
+                    <button type = 'button' class = 'btn btn-primary col-md-2' ng-click = 'importData()' data-dismiss = 'modal'>
+                        Import
+                    </button>
+                </div>
+
+                <p><sub>Only CSV and JSON formats are accepted.</sub></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

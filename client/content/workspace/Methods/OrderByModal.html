@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OrderByModal</title>
+</head>
+<body>
+<div id = 'orderby-modal' class = 'modal fade custom-modal'  role = 'dialog' ng-controller = 'OrderByController'>
+    <div class = 'modal-dialog'>
+        <div class = 'modal-content'>
+
+            <div class = 'modal-header'>
+                <button type = 'button' class = 'close' data-dismiss = 'modal'>&times;</button>
+                <h4 class = 'modal-title'>OrderBy{{currentModule.name_id}}</h4>
+            </div>
+
+            <div class = 'modal-body'>
+
+                <!-- Criteria -->
+                <p class = 'header-1'>Criteria</p>
+
+                <table class = 'table table-bordered table-hover'>
+                    <thead>
+                    <tr>
+                        <th class = 'text-center'>Order By</th>
+                        <th class = 'text-center'>Criterion Name</th>
+                        <th class = 'text-center'>Type</th>
+                        <th class = 'text-center'>Direction</th>
+                        <th class = 'col-md-2'></th>
+                    </tr>
+                    </thead>
+                    <!-- Added Criteria -->
+                    <tbody>
+                    <tr ng-repeat = 'criterion in currentModule.input.criteria' ng-class = '{danger: criterion.id == deleteIdCriterion}'>
+                        <td>
+                                <input type = 'radio' ng-checked = 'criterion.selected == "true"' ng-click = 'selectOrderByCriterion(criterion)'>
+                        </td>
+                        <td>
+                            <div id = 'orderby-criterion-{{criterion.id}}-name'>
+                                <input class = 'form-control' type = 'text' ng-model = 'criterion.name' ng-blur = 'blurOrderByCriterionName(criterion)'>
+                            </div>
+                        </td>
+                        <td>
+                            <select class = 'form-control' ng-model = 'criterion.type'>
+                                <option value = '' disabled>--- Please Select ---</option>
+                                <option>Text</option>
+                                <option>Number</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class = 'form-control' ng-model = 'criterion.direction'>
+                                <option value = '' disabled>--- Please Select ---</option>
+                                <option>Ascendant</option>
+                                <option>Descendant</option>
+                            </select>
+                        </td>
+                        <td ng-if = 'criterion.id != deleteIdCriterion'>
+                            <!-- Duplicate Criterion Button -->
+                            <button type = 'button' class = 'btn btn-info' ng-click = 'copyOrderByCriterion(criterion)' title = 'Duplicate Criterion'>
+                                <span class = 'glyphicon glyphicon-duplicate'></span>
+                            </button>
+                            <!-- Delete Criterion Button -->
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'deleteInput(criterion, "Criteria")' title = 'Delete Criterion'>
+                                <span class = 'glyphicon glyphicon-minus'></span>
+                            </button>
+                        </td>
+                        <td ng-if = 'criterion.id == deleteIdCriterion'>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'confirmDeleteInput(criterion, "Criteria")' title = 'Confirm Delete Criterion'>
+                                <span class = 'glyphicon glyphicon-ok'></span>
+                            </button>
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'cancelDeleteInput("Criteria")' title = 'Cancel Delete Criterion'>
+                                <span class = 'glyphicon glyphicon-remove'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Form to add criteria -->
+                    <tr class = 'active'>
+                        <td></td>
+                        <td>
+                            <div id = 'new-orderby-criterion-name' class = 'form-group'>
+                                <input class = 'form-control' type = 'text' ng-model = 'new_orderby_criterion.name'>
+                            </div>
+                        </td>
+                        <td>
+                            <div id = 'new-orderby-criterion-type' class = 'form-group'>
+                                <select class = 'form-control' ng-model = 'new_orderby_criterion.type'>
+                                    <option value = '' disabled>--- Please Select ---</option>
+                                    <option>Text</option>
+                                    <option>Number</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div id = 'new-orderby-criterion-direction' class = 'form-group'>
+                                <select class = 'form-control' ng-model = 'new_orderby_criterion.direction'>
+                                    <option value = '' disabled>--- Please Select ---</option>
+                                    <option>Ascendant</option>
+                                    <option>Descendant</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'addOrderByCriterion()' title = 'Add Criterion'>
+                                <span class = 'glyphicon glyphicon-plus'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!-- Actions -->
+                <p class = 'header-1'>Actions</p>
+
+                <table class = 'table table-bordered table-hover'>
+                    <thead>
+                    <th class = 'text-center'>Name</th>
+                    <th class = 'text-center' ng-repeat = 'orderby_criterion in currentModule.input.criteria'>{{orderby_criterion.name}}</th>
+                    <th class = 'col-md-2'></th>
+                    </thead>
+                    <tbody>
+                    <!-- Added Actions -->
+                    <tr ng-repeat = 'orderby_action in currentModule.input.actions' ng-class = '{danger: orderby_action.id == deleteIdAction}'>
+                        <td>
+                            <div id = 'orderby-action-{{orderby_action.id}}-name'>
+                                <input class = 'form-control' ng-model = 'orderby_action.name' ng-blur = 'blurOrderByActionName(orderby_action)'>
+                            </div>
+                        </td>
+                        <td ng-repeat = 'orderby_criterion in currentModule.input.criteria'>
+                            <div id = 'orderby-action-{{orderby_action.id}}-criterion-{{orderby_criterion.id}}'>
+                                <input class = 'form-control' ng-model = 'orderby_action[orderby_criterion.name]' ng-blur = 'blurOrderByActionCriterion(orderby_action, orderby_criterion)'>
+                            </div>
+                        </td>
+                        <td ng-if = 'orderby_action.id != deleteIdAction'>
+                            <!-- Duplicate Action Button -->
+                            <button type = 'button' class = 'btn btn-info' ng-click = 'copyOrderByAction(orderby_action)' title = 'Duplicate Action'>
+                                <span class = 'glyphicon glyphicon-duplicate'></span>
+                            </button>
+                            <!-- Delete Action Button -->
+                            <button type = 'button' class = 'btn btn-danger btn-action-remove' ng-click = 'deleteInput(orderby_action, "Actions")' title = 'Delete Action'>
+                                <span class = 'glyphicon glyphicon-minus'></span>
+                            </button>
+                        </td>
+                        <td ng-if = 'orderby_action.id == deleteIdAction'>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'confirmDeleteInput(orderby_action, "Actions")' title = 'Confirm Delete Action'>
+                                <span class = 'glyphicon glyphicon-ok'></span>
+                            </button>
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'cancelDeleteInput("Actions")' title = 'Cancel Delete Action'>
+                                <span class = 'glyphicon glyphicon-remove'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Form to add action -->
+                    <tr class = 'active'>
+                        <td>
+                            <div id = 'new-orderby-action-name' class = 'form-group'>
+                                <input class = 'form-control' ng-model = 'new_orderby_action.name'>
+                            </div>
+                        </td>
+                        <td ng-repeat = 'criterion in currentModule.input.criteria'>
+                            <div id = 'new-orderby-action-criterion-{{criterion.id}}' class = 'form-group'>
+                                <input class = 'form-control' ng-model = 'new_orderby_action[criterion.name]'>
+                            </div>
+                        </td>
+                        <td>
+                            <button type = 'button' class = 'btn btn-success btn-action-add' ng-click = 'addOrderByAction()' title = 'Add Action'>
+                                <span class = 'glyphicon glyphicon-plus'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!-- OK button -->
+                <button type = 'button' class = 'btn btn-primary' data-dismiss = 'modal'>OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

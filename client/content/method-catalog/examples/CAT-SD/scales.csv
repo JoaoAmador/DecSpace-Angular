@@ -1,0 +1,7 @@
+criterion;type;min;max;num_categories
+Physical Fitness;Cardinal;370;1281;''
+Mental Sharpness;Cardinal;35;99;''
+Mental Resilience;Ordinal;'';'';4
+Intelligence;Ordinal;'';'';7
+Teamwork Skills;Ordinal;'';'';7
+Motivation;Ordinal;'';'';7

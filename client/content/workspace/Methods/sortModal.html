@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sortModal</title>
+</head>
+<body>
+<div id = 'sort-modal' class = 'modal fade custom-modal' role = 'dialog' ng-controller = 'SortController'>
+    <div class = 'modal-dialog'>
+        <div class = 'modal-content'>
+
+            <div class = 'modal-header'>
+                <button type = 'button' class = 'close' data-dismiss = 'modal'>&times;</button>
+                <h4 class = 'modal-title'>Sort{{currentModule.name_id}}</h4>
+            </div>
+
+            <div class = 'modal-body'>
+
+                <!-- Objects -->
+                <p class = 'header-1'>Objects</p>
+
+                <table class = 'table table-bordered table-hover'>
+                    <thead>
+                    <tr>
+                        <th class = 'text-center'>Name</th>
+                        <th class = 'col-md-2'></th>
+                    </tr>
+                    </thead>
+                    <!-- Added Objects -->
+                    <tbody>
+                    <tr ng-repeat = 'object in currentModule.input.objects | orderBy: "id"' ng-class = '{danger: object.id == deleteIdObject}'>
+                        <td>
+                            <div id = 'sort-object-{{object.id}}'>
+                                <input class = 'form-control' type = 'text' ng-model = 'object.name' ng-blur = 'blurSortObjectName(object)'>
+                            </div>
+                        </td>
+                        <td ng-if = 'object.id != deleteIdObject'>
+                            <!-- Duplicate Object Button -->
+                            <button type = 'button' class = 'btn btn-info' ng-click = 'copySortObject(object)' title = 'Duplicate Object'>
+                                <span class = 'glyphicon glyphicon-duplicate'></span>
+                            </button>
+                            <!-- Delete Object Button -->
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'deleteInput(object, "Objects")' title = 'Delete Object'>
+                                <span class = 'glyphicon glyphicon-minus'></span>
+                            </button>
+                        </td>
+                        <td ng-if = 'object.id == deleteIdObject'>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'confirmDeleteInput(object, "Objects")' title = 'Confirm Delete Object'>
+                                <span class = 'glyphicon glyphicon-ok'></span>
+                            </button>
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'cancelDeleteInput("Objects")' title = 'Cancel Delete Object'>
+                                <span class = 'glyphicon glyphicon-remove'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Form to add object -->
+                    <tr class = 'active'>
+                        <td>
+                            <div id = 'new-sort-object-name' class = 'form-group'>
+                                <input class = 'form-control' type = 'text' ng-model = 'new_object.name'>
+                            </div>
+                        </td>
+                        <td>
+                            <button type = 'button' class = 'btn btn-success btn-action-add' ng-click = 'addSortObject()' title = 'Add Object'>
+                                <span class = 'glyphicon glyphicon-plus'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!-- Order -->
+                <p class = 'header-1'>Order</p>
+
+                <div class = 'row text-center'>
+                    <ul class = 'draglist'>
+                        <li class = 'sort-drop' ng-repeat = 'obj in currentModule.input.objects' ng-drop = 'true' ng-drop-success = 'onDropComplete($index, $data, $event)'>
+                            <div class = 'sort-drag' ng-drag = 'true' ng-drag-data = 'obj' ng-class = 'obj.name'>{{obj.name}}</div>
+
+                            <div ng-if = 'currentModule.input.objects.length > 1'>
+                                <p ng-if = '$index == 0' style = 'margin-top: 20%'>Most Important</p>
+                                <p ng-if = '$index == currentModule.input.objects.length - 1' style = 'margin-top: 20%'>Least Important</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <br><br>
+
+                <!-- OK button -->
+                <button type = 'button' class = 'btn btn-primary' data-dismiss = 'modal'>OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

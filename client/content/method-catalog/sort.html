@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DecSpace - Method Catalog - Sort</title>
+
+    <meta name = 'viewport' content = 'width = device-width, initial-scale = 1'>
+
+    <!-- CSS Stylesheet -->
+    <link rel = 'stylesheet' type = 'text/css' href = '../../css/index.css'/>
+    <link rel = 'stylesheet' type = 'text/css' href = '../../css/sort.css' />
+
+    <!-- jQuery -->
+    <script type = 'text/javascript' src = '../../js/shared/jquery-3.1.0.js'></script>
+    <script type = 'text/javascript' src = '../../js/shared/jquery-ui-1.12.0/jquery-ui.js'></script>
+
+    <!-- AngularJS -->
+    <script src = '../../js/shared/angular.min.js'></script>
+
+    <!-- AngularJS Modules -->
+    <script src = '../../js/app.js'></script>
+
+    <!-- AngularJS Controllers -->
+    <script src = '../../js/controllers/method-catalog/MethodController.js'></script>
+
+    <!-- Bootstrap -->
+    <link rel = 'stylesheet' href = '../../js/shared/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>
+    <script type = 'text/javascript' src = '../../js/shared/bootstrap-3.3.7-dist/js/bootstrap.js'></script>
+
+    <!-- Google Web Fonts -->
+    <link href = 'https://fonts.googleapis.com/css?family=Open+Sans:400,600i' rel = 'stylesheet'>
+
+    <!-- ng-draggable module -->
+    <script src = '../../js/shared/ng-draggable/ngDraggable.js'></script>
+  </head>
+
+  <body ng-app = 'decspace' ng-controller = 'MethodController'>
+
+    <!-- Navigation Bar -->
+    <nav class = 'navbar navbar-custom navbar-fixed-top'>
+      <div class = 'container'>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class = 'navbar-header'>
+          <button type = 'button' class = 'navbar-toggle collapsed' data-toggle = 'collapse' data-target = '#top-navbar' aria-expanded = 'false'>
+            <span class = 'sr-only'>Toggle navigation</span>
+            <span class = 'icon-bar'></span>
+            <span class = 'icon-bar'></span>
+            <span class = 'icon-bar'></span>
+          </button>
+          <!-- Title -->
+          <a class = 'navbar-brand' href = '../../index.html'>DecSpace</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class = 'collapse navbar-collapse' id = 'top-navbar'>
+          <!-- About, FAQ and Contact Us links. Sign Up and Log In buttons. -->
+          <ul class = 'nav navbar-nav navbar-right'>
+            <li ng-if = 'loggedIn' ng-cloak>
+              <p class = 'navbar-text' style = 'font-weight: 600; font-style: italic' ng-if = '!unregistered_user' ng-cloak>Welcome, {{name}}!</p>
+
+              <p class = 'navbar-text' style = 'font-weight: 600; font-style: italic' ng-if = 'unregistered_user' ng-cloak>Welcome!</p>
+            </li>
+            
+            <li ng-if = 'loggedIn' ng-cloak><a href = '../projects/projects.html'>My Projects</a></li>
+            
+            <li ng-if = 'loggedIn' ng-cloak><a href = '../projects/public-projects.html'>Public Projects</a></li>
+            
+            <li><a href = '../homepage/about.html'>About</a></li>
+            
+            <li class = 'active'><a href = 'method-catalog.html'>Method Catalog</a></li>
+            
+            <li><a href = '../homepage/faq.html'>FAQ</a></li>
+            
+            <li><a href = '../homepage/contactus.html'>Contact Us</a></li>
+
+            <li ng-if = 'loggedIn'><a href = '../settings/settings.html'>Settings</a></li>
+
+            <li><a href = '../administrator/administrator.html' ng-if = 'username == "admin@admin"' ng-cloak>Administrator</a></li>
+            
+            <li ng-if = '!loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'toSignUp()'>
+                <span class = 'glyphicon glyphicon-user'></span>
+                Sign Up
+              </button>
+            </li>
+
+            <li ng-if = '!loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'toLogIn()' style = 'margin-left: 5%'>
+                <span class = 'glyphicon glyphicon-log-in'></span>
+                Log In
+              </button>
+            </li>
+
+            <li ng-if = 'loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'logOut()'>
+                <span class = 'glyphicon glyphicon-log-out'></span>
+                Log Out
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id = 'main-content' class = 'container'>
+
+      <br>
+
+      <p class = 'header-1'>Method Catalog - Sort</p>
+
+      <br>
+
+      <!-- Main tabs - Method Description and Example -->
+      <ul class = 'nav nav-tabs nav-justified'>
+        <li role = 'presentation' class = 'active'><a data-toggle = 'tab' href= '#description'>Description</a></li>
+        <li role = 'presentation'><a data-toggle = 'tab' href= '#example'>Example</a></li>
+      </ul>
+
+      <div class = 'tab-content'>
+        <!-- Method Description -->
+        <div id = 'description' class = 'tab-pane fade in active' style = 'text-align: left'>
+
+          <br>
+
+          <p>List various objects (only the name is needed) and then reorder them by their importance. The object on the left should be the most important and the object on the right should be the least important.</p>
+
+        </div>
+
+        <!-- Example -->
+        <div id = 'example' class = 'tab-pane fade'>
+
+          <br>
+
+          <!-- Export Button -->
+          <button type = 'button' class = 'btn btn-primary' title = 'Download Sort Example' ng-click = 'exportExampleData("Sort")' style = 'float: left'>
+            <span class = 'glyphicon glyphicon-download-alt icon-large'></span>
+          </button>
+
+          <br><br>
+
+          <!-- Example of Objects -->
+          <p class = 'header-5'>Objects</p>
+
+          <table class = 'table table-bordered table-hover'>
+            <thead>
+              <tr>
+                <th class = 'text-center'>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Photography</td></tr>
+              <tr><td>Music</td></tr>
+              <tr><td>Drawing</td></tr>
+              <tr><td>Movies</td></tr>
+            </tbody>
+          </table>
+
+          <br>
+
+          <!-- Example of Order -->
+          <p class = 'header-5'>Order</p>
+
+          <ul class = 'draglist'>
+            <li class = 'drop-obj' ng-repeat = 'obj in sort_objects'>
+              <div class = 'drag-obj'>{{obj.name}}</div>
+              <p ng-if = '$index == 0'>Most Important</p>
+              <p ng-if = '$index == sort_objects.length - 1'>Least Important</p>
+            </li>
+          </ul>
+
+          <br><br><br>
+
+          <!-- Example of Results -->
+          <p class = 'header-5'>Results</p>
+
+          <ul class = 'draglist'>
+            <li class = 'drop-obj' ng-repeat = 'obj in sort_objects'>
+              <div class = 'drag-obj'>{{obj.name}}</div>
+              <p ng-if = '$index == 0'>Most Important</p>
+              <p ng-if = '$index == sort_objects.length - 1'>Least Important</p>
+            </li>
+          </ul>
+
+          <br>
+
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

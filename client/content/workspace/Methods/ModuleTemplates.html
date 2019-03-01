@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ModuleTemplates</title>
+</head>
+<body>
+<!-- Input File Template -->
+<template id = 'inputfile-temp'>
+    <div id = 'inputfile' class = 'module-template module-inputfile draggable'>
+        <a id = 'filename' href class = 'module-circle-anchor' data-toggle = 'modal' data-target = '#inputfile-modal' ng-click = 'selectCurrentModule($event)'></a>
+
+        <a href ng-click = 'selectDeleteModule($event)' style = 'display: block; margin-top: -13%; margin-left: 87%'>
+            <span class = 'glyphicon glyphicon-remove'></span>
+        </a>
+
+        <button id = 'inputfile-output' type = 'button' class = 'module-circle module-circle-output' ng-click = 'drawConnection($event, "output")' style = 'margin-top: 3%; margin-left: 39%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: 10%'>Output</span>
+    </div>
+</template>
+
+<!-- OrderBy Template -->
+<template id = 'orderby-temp'>
+    <div id = 'orderby' class = 'module-template module-orderby draggable'>
+        <a id = 'mod-name' href class = 'module-circle-anchor' data-toggle = 'modal' data-target = '#orderby-modal' ng-click = 'selectCurrentModule($event)'></a>
+
+        <a href ng-click = 'selectDeleteModule($event)' style = 'display: block; margin-top: -14.5%; margin-left: 87%'>
+            <span class = 'glyphicon glyphicon-remove'></span>
+        </a>
+
+        <button id = 'orderby-criteria' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "criteria")' style = 'margin-top: 3%; margin-left: -49%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: -37%'>Criteria</span>
+
+        <button id = 'orderby-actions' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "actions")' style = 'margin-top: 15%; margin-left: -49%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 13.5%; margin-left: -37%'>Actions</span>
+
+        <button id = 'orderby-output' type = 'button' class = 'module-circle module-circle-output' ng-click = 'drawConnection($event, "output")' style = 'margin-top: 3%; margin-left: 38%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: 6.5%'>Output</span>
+    </div>
+</template>
+
+<!-- AdditiveAggregation Template -->
+<template id = 'additiveaggregation-temp'>
+    <div id = 'additiveaggregation' class = 'module-template module-additiveaggregation draggable'>
+        <a id = 'mod-name' href class = 'module-circle-anchor' data-toggle = 'modal' data-target = '#additiveaggregation-modal' ng-click = 'selectCurrentModule($event)'></a>
+
+        <a href ng-click = 'selectDeleteModule($event)' style = 'display: block; margin-top: -14.5%; margin-left: 87%'>
+            <span class = 'glyphicon glyphicon-remove'></span>
+        </a>
+
+        <button id = 'additiveaggregation-criteria' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "criteria")' style = 'margin-top: 3%; margin-left: -49%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: -37%'>Criteria</span>
+
+        <button id = 'additiveaggregation-options' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "options")' style = 'margin-top: 15%; margin-left: -49%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 13.5%; margin-left: -37%'>Options</span>
+
+        <button id = 'additiveaggregation-output' type = 'button' class = 'module-circle module-circle-output' ng-click = 'drawConnection($event, "output")' style = 'margin-top: 3%; margin-left: 38%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: 6.5%'>Output</span>
+    </div>
+</template>
+
+<!-- Sort Template -->
+<template id = 'sort-temp'>
+    <div id = 'sort' class = 'module-template module-sort draggable'>
+        <a id = 'mod-name' href class = 'module-circle-anchor' data-toggle = 'modal' data-target = '#sort-modal' ng-click = 'selectCurrentModule($event)'></a>
+
+        <a href ng-click = 'selectDeleteModule($event)' style = 'display: block; margin-top: -13.5%; margin-left: 87%'>
+            <span class = 'glyphicon glyphicon-remove'></span>
+        </a>
+
+        <button id = 'sort-order' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "objects")' style = 'margin-top: 3%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: -36%'>Objects</span>
+
+        <button id = 'sort-output' type = 'button' class = 'module-circle module-circle-output' ng-click = 'drawConnection($event, "output")' style = 'margin-top: 3%; margin-left: 39.5%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: 8%'>Output</span>
+    </div>
+</template>
+
+<!-- CAT-SD Template -->
+<template id = 'cat-sd-temp'>
+    <div id = 'cat-sd' class = 'module-template module-cat-sd draggable'>
+        <a id = 'mod-name' href class = 'module-circle-anchor' data-toggle = 'modal' data-target = '#cat-sd-modal' ng-click = 'selectCurrentModule($event)'></a>
+
+        <a href ng-click = 'selectDeleteModule($event)' style = 'display: block; margin-top: -11%; margin-left: 91%'>
+            <span class = 'glyphicon glyphicon-remove'></span>
+        </a>
+
+        <button id = 'cat-sd-criteria' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "criteria")' style = 'margin-top: 3%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: -39.5%'>Criteria</span>
+
+        <button id = 'cat-sd-scales' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "scales")' style = 'margin-top: 12%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 10.5%; margin-left: -39.5%'>Scales</span>
+
+        <button id = 'cat-sd-functions' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "functions")' style = 'margin-top: 21%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 19.5%; margin-left: -39.5%'>Functions</span>
+
+        <button id = 'cat-sd-actions' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "actions")' style = 'margin-top: 30%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 28.5%; margin-left: -39.5%'>Actions</span>
+
+        <button id = 'cat-sd-categories' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "categories")' style = 'margin-top: 39%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 37.5%; margin-left: -40%'>Categories</span>
+
+        <button id = 'cat-sd-reference-actions' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "reference actions")' style = 'margin-top: 48%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 46.5%; margin-left: -39.5%'>Reference Actions</span>
+
+        <button id = 'cat-sd-interaction-effects' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "interaction effects")' style = 'margin-top: 57%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 55.5%; margin-left: -40%'>Interaction Effects</span>
+
+        <button id = 'cat-sd-output' type = 'button' class = 'module-circle module-circle-output' ng-click = 'drawConnection($event, "output")' style = 'margin-top: 3%; margin-left: 42%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: 18.5%'>Output</span>
+    </div>
+</template>
+
+<!-- Inquiry Template -->
+<template id = 'inquiry-temp'>
+    <div id = 'inquiry' class = 'module-template module-inquiry draggable'>
+        <a id = 'mod-name' href class = 'module-circle-anchor' data-toggle = 'modal' data-target = '#inquiry-modal' ng-click = 'selectCurrentModule($event)'></a>
+
+        <a href ng-click = 'selectDeleteModule($event)' style = 'display: block; margin-top: -10%; margin-left: 88%'>
+            <span class = 'glyphicon glyphicon-remove'></span>
+        </a>
+
+        <button id = 'inquiry-subject' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "subject")' style = 'margin-top: 3%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: -40%'>Subject</span>
+
+        <button id = 'inquiry-description' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "description")' style = 'margin-top: 13%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 11.5%; margin-left: -40%'>Description</span>
+
+        <button id = 'inquiry-emails' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "emails")' style = 'margin-top: 23%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 21.5%; margin-left: -40%'>Specialists' Emails</span>
+
+        <button id = 'inquiry-characterization-questions' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "open_answer_questions")' style = 'margin-top: 33%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 31.5%; margin-left: -40%'>Characterization Questions</span>
+
+        <button id = 'inquiry-questions' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "questions")' style = 'margin-top: 43%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 41.5%; margin-left: -40%'>Q-Sort Questions</span>
+
+        <button id = 'inquiry-color-scheme' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "color_scheme")' style = 'margin-top: 53%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 51.5%; margin-left: -40%'>Q-Sort Color Scheme</span>
+
+        <button id = 'inquiry-scale' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "scale")' style = 'margin-top: 63%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 61.5%; margin-left: -40%'>Q-Sort Scale</span>
+
+        <button id = 'inquiry-glossary' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "glossary")' style = 'margin-top: 73%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 71.5%; margin-left: -40%'>Glossary</span>
+
+        <button id = 'inquiry-suggestions' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "suggestions")' style = 'margin-top: 83%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 81.5%; margin-left: -40%'>Suggestions</span>
+
+        <button id = 'inquiry-personalized-email' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "personalized_email")' style = 'margin-top: 93%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 91.5%; margin-left: -40%'>Personalized Email</span>
+
+        <button id = 'inquiry-output' type = 'button' class = 'module-circle module-circle-output' ng-click = 'drawConnection($event, "output")' style = 'margin-top: 3%; margin-left: 40.5%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: 18%'>Output</span>
+    </div>
+</template>
+
+<!-- SRF Template -->
+<template id = 'srf-temp'>
+    <div id = 'srf' class = 'module-template module-srf draggable'>
+        <a id = 'mod-name' href class = 'module-circle-anchor' data-toggle = 'modal' data-target = '#srf-modal' ng-click = 'selectCurrentModule($event)'></a>
+
+        <a href ng-click = 'selectDeleteModule($event)' style = 'display: block; margin-top: -12%; margin-left: 89%'>
+            <span class = 'glyphicon glyphicon-remove'></span>
+        </a>
+
+        <button id = 'srf-criteria' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "criteria")' style = 'margin-top: 3%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: -39%'>Criteria</span>
+
+        <button id = 'srf-white-cards' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "white cards")' style = 'margin-top: 13%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 11.5%; margin-left: -39%'>White Cards</span>
+
+        <button id = 'srf-ranking' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "ranking")' style = 'margin-top: 23%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 21.5%; margin-left: -39%'>Ranking</span>
+
+        <button id = 'srf-ratio-z' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "ratio z")' style = 'margin-top: 33%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 31.5%; margin-left: -39%'>Ratio Z</span>
+
+        <button id = 'srf-decimal-places' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "decimal places")' style = 'margin-top: 43%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 41.5%; margin-left: -39%'>Decimal Places</span>
+
+        <button id = 'srf-weight-type' type = 'button' class = 'module-circle module-circle-input' ng-click = 'drawConnection($event, "weight type")' style = 'margin-top: 53%; margin-left: -48%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 51.5%; margin-left: -39%'>Weight Type</span>
+
+        <button id = 'srf-output' type = 'button' class = 'module-circle module-circle-output' ng-click = 'drawConnection($event, "output")' style = 'margin-top: 3%; margin-left: 41%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1.5%; margin-left: 15.5%'>Output</span>
+    </div>
+</template>
+
+<!-- Output Template -->
+<template id = 'outputfile-temp'>
+    <div id = 'outputfile' class = 'module-template module-outputfile draggable'>
+        <a id = 'filename' href class = 'module-circle-anchor' data-toggle = 'modal' data-target = '#outputfile-modal' ng-click = 'selectCurrentModule($event)'></a>
+
+        <a href ng-click = 'selectDeleteModule($event)' style = 'display: block; margin-top: -11.5%; margin-left: 88%'>
+            <span class = 'glyphicon glyphicon-remove'></span>
+        </a>
+
+        <button id = 'outputfile-input' type = 'button' class = 'module-circle module-circle-output' ng-click = 'drawConnection($event, "output")' style = 'margin-top: 2.5%; margin-left: 39%'></button>
+        <span class = 'module-circle-span' style = 'margin-top: 1%; margin-left: 13%'>Output</span>
+    </div>
+</template>
+
+</body>
+</html>

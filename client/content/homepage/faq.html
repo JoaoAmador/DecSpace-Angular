@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DecSpace - FAQ</title>
+
+    <meta name = 'viewport' content = 'width = device-width, initial-scale = 1'>
+
+    <!-- CSS Stylesheet -->
+    <link rel = 'stylesheet' type = 'text/css' href = '../../css/index.css' />
+    <link rel = 'stylesheet' type = 'text/css' href = '../../css/faq.css' />
+
+    <!-- jQuery -->
+    <script type = 'text/javascript' src = '../../js/shared/jquery-3.1.0.js'></script>
+    <script type = 'text/javascript' src = '../../js/shared/jquery-ui-1.12.0/jquery-ui.js'></script>
+
+    <!-- AngularJS -->
+    <script src = '../../js/shared/angular.min.js'></script>
+
+    <!-- AngularJS Modules -->
+    <script src = '../../js/app.js'></script>
+
+    <!-- AngularJS Controllers -->
+    <script src = '../../js/controllers/homepage/FAQController.js'></script>
+
+    <!-- Bootstrap -->
+    <link rel = 'stylesheet' href = '../../js/shared/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>
+    <script type = 'text/javascript' src = '../../js/shared/bootstrap-3.3.7-dist/js/bootstrap.js'></script>
+
+    <!-- Google Web Fonts -->
+    <link href = 'https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600i' rel = 'stylesheet'>
+
+    <!-- ng-draggable module -->
+    <script src = '../../js/shared/ng-draggable/ngDraggable.js'></script>
+
+    <!-- Font Awesome -->
+    <link rel = 'stylesheet' href = '../../js/shared/font-awesome-4.7.0/css/font-awesome.css'></link>
+  </head>
+
+  <body ng-app = 'decspace' ng-controller = 'FAQController'>
+
+    <!-- Navigation Bar -->
+    <nav class = 'navbar navbar-custom navbar-fixed-top'>
+      <div class = 'container'>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class = 'navbar-header'>
+          <button type = 'button' class = 'navbar-toggle collapsed' data-toggle = 'collapse' data-target = '#top-navbar' aria-expanded = 'false'>
+            <span class = 'sr-only'>Toggle navigation</span>
+            <span class = 'icon-bar'></span>
+            <span class = 'icon-bar'></span>
+            <span class = 'icon-bar'></span>
+          </button>
+          <!-- Title -->
+          <a class = 'navbar-brand' href = '../../index.html'>DecSpace</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class = 'collapse navbar-collapse' id = 'top-navbar'>
+          <!-- About, FAQ and Contact Us links. Sign Up and Log In buttons. -->
+          <ul class = 'nav navbar-nav navbar-right'>
+            <li ng-if = 'loggedIn' ng-cloak>
+              <p class = 'navbar-text' style = 'font-weight: 600; font-style: italic'>Welcome, {{name}}!</p>
+            </li>
+            
+            <li ng-if = 'loggedIn' ng-cloak><a href = '../projects/projects.html'>My Projects</a></li>
+            
+            <li ng-if = 'loggedIn' ng-cloak><a href = '../projects/public-projects.html'>Public Projects</a></li>
+            
+            <li><a href = 'about.html'>About</a></li>
+            
+            <li><a href = '../method-catalog/method-catalog.html'>Method Catalog</a></li>
+            
+            <li class = 'active'><a href = 'faq.html'>FAQ</a></li>
+            
+            <li><a href = 'contactus.html'>Contact Us</a></li>
+
+            <li ng-if = 'loggedIn'><a href = '../settings/settings.html'>Settings</a></li>
+
+            <li><a href = '../administrator/administrator.html' ng-if = 'username == "admin@admin"' ng-cloak>Administrator</a></li>
+
+            <li ng-if = '!loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'toSignUp()'>
+                <span class = 'glyphicon glyphicon-user'></span>
+                Sign Up
+              </button>
+            </li>
+
+            <li ng-if = '!loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'toLogIn()' style = 'margin-left: 5%'>
+                <span class = 'glyphicon glyphicon-log-in'></span>
+                Log In
+              </button>
+            </li>
+
+            <li ng-if = 'loggedIn' ng-cloak>
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'logOut()'>
+                <span class = 'glyphicon glyphicon-log-out'></span>
+                Log Out
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id = 'main-content' class = 'container'>
+
+      <br>
+
+      <p class = 'header-1'>FAQ</p>
+      <p>Frequently Asked Questions</p>
+
+      <!-- First set of questions -->
+      <div id = 'faq-div'>
+        <div class = 'col-sm-6 title-set-questions'>
+          <p>New to DecSpace?</p>
+        </div>
+
+        <div class = 'col-sm-6 list-group'>
+          <!-- Question 1 -->
+          <a href = '#answer1' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>What is DecSpace?</a>
+          <div id = 'answer1' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>DecSpace is a web application that makes use of MCDA methods to support the user during the decision process.
+              <br>
+              For more information, check the <a href = 'about.html'>About</a> page.</p>
+          </div>
+
+          <!-- Question 2 -->
+          <a href = '#answer2' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>What is MCDA?</a>
+          <div id = 'answer2' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>MCDA (Multi-Criteria Decision Analysis) is one of the fields of study of Operations Research.
+              <br>
+              It offers a wide variety of MCDA methods to support the user with the most diverse problems.</p>
+          </div>
+
+          <!-- Question 3 -->
+          <a href = '#answer3' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>Which MCDA methods are currently available?</a>
+          <div id = 'answer3' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>Currently, the MCDA methods available in DecSpace are: <a href = '../method-catalog/cat-sd.html'>CAT-SD</a>, <a href = '../method-catalog/inquiry.html'>Inquiry</a>, <a href = '../method-catalog/orderby.html'>OrderBy</a>, <a href = '../method-catalog/sort.html'>Sort</a> and <a href = '../method-catalog/srf.html'>SRF</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second set of questions -->
+      <div>
+        <div class = 'col-sm-6 title-set-questions'>
+          <p>Signing up and logging in</p>
+        </div>
+
+        <div class = 'col-sm-6 list-group'>
+          <!-- Question 4 -->
+          <a href = '#answer4' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>How do I sign up?</a>
+          <div id = 'answer4' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>On the upper right conner of the screen, you can find a button similar to this one:
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'toSignUp()'>
+                <span class = 'glyphicon glyphicon-user'></span>
+                Sign Up
+              </button>
+              <br>
+              If you click it, you are asked to give your email address and a password. After you fill those fields, click the "register" button.</p>
+            </p>
+          </div>
+
+          <!-- Question 5 -->
+          <a href = '#answer5' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>How do I log in?</a>
+          <div id = 'answer5' class = 'collapse'>
+            <p class = 'list-group-item' title-set-answers>Before you can log in, you have to make sure have signed up previously.
+              If you have, then you should click the "Log In" button that can also be found on the upper right corner of the screen.
+              <br>
+              It is similar to this button:
+              <button type = 'button' class = 'btn btn-default navbar-btn' ng-click = 'toLogIn()'>
+                <span class = 'glyphicon glyphicon-log-in'></span>
+                Log In
+              </button>
+              <br>
+              After you click it, insert the credentials you used to sign up and click the "Log In" button.
+              You should be redirected to the dashboard.
+            </p>
+          </div>
+
+          <!-- Question 6 -->
+          <a href = '#answer6' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>What if I forgot my password?</a>
+          <div id = 'answer6' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>If you forgot your password, you can simply go the <a href = 'forgotpassword.html'>Forgot your password?</a> page. There you should introduce the email address you used to sign up and click the "Recover Password".
+              After that, a message is sent to that email address with the password previously defined.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Third set of questions -->
+      <div>
+        <div class = 'col-sm-6 title-set-questions'>
+          <p>Projects</p>
+        </div>
+
+        <div class = 'col-sm-6 list-group'>
+          <!-- Question 7 -->
+          <a href = '#answer7' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>How do I create a new project?</a>
+          <div id = 'answer7' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>After logging in, you are presented with your list of projects.
+              To add a new one, insert the name of the new project in the respective field and click the "Add Project" button.
+            </p>
+          </div>
+
+          <!-- Question 8 -->
+          <a href = '#answer8' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>What are the main functionalities of this feature?</a>
+          <div id = 'answer8' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>Besides creating new projects, in the "Projects" page, you can also:
+              <br>
+              <button type = 'button' class = 'btn btn-primary btn-open'>
+                <span class = 'glyphicon glyphicon-folder-open'></span>
+              </button>
+              Open project - go to the "Workspace", where it is possible to build and run a workflow with various methods.
+              <br>
+              <button type = 'button' class = 'btn btn-info btn-duplicate'>
+                <span class = 'glyphicon glyphicon-duplicate'></span>
+              </button>
+              Duplicate project - create a project similar to the one that was selected.
+              <br>
+              <button type = 'button' class = 'btn btn-danger btn-delete'>
+                <span class = 'glyphicon glyphicon-trash'></span>
+              </button>
+              Delete project - permanently eliminate a certain a project.
+            </p>
+          </div>
+
+          <!-- Question 9 -->
+          <a href = '#answer9' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>How do I change views?</a>
+          <div id = 'answer9' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>By default, your projects are displayed in a "Table View", but it is possible to change to a "List View". To do that you just have to click <button type = 'button' class = 'btn btn-default'>
+              <i class = 'fa fa-list fa-lg'></i>
+              </button>. To change back to the "Table View", click <button type = 'button' class = 'btn btn-default'>
+                <i class = 'fa fa-table fa-lg'></i>
+              </button>.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Fourth set of questions -->
+      <div>
+        <div class = 'col-sm-6 title-set-questions'>
+          <p>Settings</p>
+        </div>
+
+        <div class = 'col-sm-6 list-group'>
+          <!-- Question 10 -->
+          <a href = '#answer10' class = 'list-group-item title-set-questions' data-toggle = 'collapse'>How do I change my password?</a>
+          <div id = 'answer10' class = 'collapse'>
+            <p class = 'list-group-item title-set-answers'>To change your password, first you must go to the "Settings" page.
+              After that, you are prompted with the "Password Reset" feature.
+              <br>
+              To change your password, you must introduce your current password and the password you want to change to. Just click the "Reset" button and you should have a new password!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      If you have any other doubts, please <a href = 'contactus.html'>contact us</a>!
+
+      <br><br>
+    </div>
+  </body>
+</html>

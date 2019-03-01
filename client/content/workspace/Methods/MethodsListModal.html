@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Methods List Modal</title>
+</head>
+<body>
+<!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="modal fade" id="methodsListModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Available Methods</h2>
+
+                <h3 >
+                <!-- The form -->
+                <form class="example">
+                  Local Methods
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <input type="text" placeholder="Search.." name="search">
+                </form>
+
+                   </h3>
+
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            Order By
+                            <h4 class="panel-title clearfix">
+                                <button class = 'btn btn-info' type = 'button' ng-click = 'createModule("OrderBy")' display="block" >ADD</button>
+                                <button class = 'btn btn-primary' type = 'button' onclick="location.href='http://localhost:8082/content/method-catalog/orderby.html';" display="block" >References</button>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class = 'table text-left'>
+                                    <thead>
+                                    <tr>
+                                        <th class = 'col-md-2'>Method Name</th>
+                                        <th class = 'col-md-8'>Description</th>
+                                        <th class = 'col-md-2'>Input</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Order By</td>
+                                        <td style="text-align:justify">Orders a given group of actions by a certain criterion in a specific direction (ascendant and descendant).</td>
+                                        <td>
+                                            <ul style="padding:8px;">
+                                                <li>Criteria</li>
+                                                <li>Actions</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            CAT-SD
+                            <h4 class="panel-title clearfix">
+                                <button class = 'btn btn-info' type = 'button' ng-click = 'createModule("CAT-SD")' display="block">ADD</button>
+                                <button class = 'btn btn-primary' type = 'button' onclick="location.href='http://localhost:8082/content/method-catalog/cat-sd.html';" display="block" >References</button>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class = 'table text-left'>
+                                    <thead>
+                                    <tr>
+                                        <th class = 'col-md-2'>Method Name</th>
+                                        <th class = 'col-md-8'>Description</th>
+                                        <th class = 'col-md-2'>Input</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>CAT-SD</td>
+                                        <td style="text-align:justify">CAT-SD (from CATegorization by Similarity-Dissimilarity) is a multiple criteria decision aiding method for nominal classification problems, where the categories are pre-defined and no order exists among them.</td>
+                                        <td>
+                                            <ul style="padding:8px;">
+                                                <li>Criteria</li>
+                                                <li>Scales</li>
+                                                <li>Functions</li>
+                                                <li>Actions</li>
+                                                <li>Categories</li>
+                                                <li>Reference Actions</li>
+                                                <li>Interaction Effects</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                            Inquiry
+                            <h4 class="panel-title clearfix">
+                                <button class = 'btn btn-info' type = 'button' ng-click = 'createModule("Inquiry")' display="block">ADD</button>
+                                <button class = 'btn btn-primary' type = 'button' onclick="location.href='http://localhost:8082/content/method-catalog/inquiry.html';" display="block" >References</button>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class = 'table text-left'>
+                                    <thead>
+                                    <tr>
+                                        <th class = 'col-md-2'>Method Name</th>
+                                        <th class = 'col-md-8'>Description</th>
+                                        <th class = 'col-md-2'>Input</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Inquiry</td>
+                                        <td  style="text-align:justify">Mostly used for obtaining an opinion, judgment or choice consensus. It is divided in various rounds. In each round, a survey is sent to the specialists. The Q-Sort technique is used to answer the surveys.</td>
+                                        <td>
+                                            <ul style="padding:8px;">
+                                                <li>Subject</li>
+                                                <li>Description</li>
+                                                <li>Specialists' Emails</li>
+                                                <li>Characterization Question</li>
+                                                <li>Q-Sort Questions</li>
+                                                <li>Q-Sort Color Scheme</li>
+                                                <li>Q-Sort Scale</li>
+                                                <li>Glossary</li>
+                                                <li>Suggestions</li>
+                                                <li>Personalized Email</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                            Sort
+                            <h4 class="panel-title clearfix">
+                                <button class = 'btn btn-info' type = 'button' ng-click = 'createModule("Sort")' display="block">ADD</button>
+                                <button class = 'btn btn-primary' type = 'button' onclick="location.href='http://localhost:8082/content/method-catalog/sort.html';" display="block" >References</button>
+                            </h4>
+                        </div>
+                        <div id="collapse4" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class = 'table text-left'>
+                                    <thead>
+                                    <tr>
+                                        <th class = 'col-md-2'>Method Name</th>
+                                        <th class = 'col-md-8'>Description</th>
+                                        <th class = 'col-md-2'>Input</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Sort</td>
+                                        <td style="text-align:justify">List various objects (only the name is needed) and then reorder them by their importance. The object on the left should be the most important and the object on the right should be the least important.</td>
+                                        <td>
+                                            <ul style="padding:8px;">
+                                                <li>Subject</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                            SRF
+                            <h4 class="panel-title clearfix">
+                                <button class = 'btn btn-info' type = 'button' ng-click = 'createModule("SRF")' display="block">ADD</button>
+                                <button class = 'btn btn-primary' type = 'button' onclick="location.href='http://localhost:8082/content/method-catalog/srf.html';" display="block" >References</button>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class = 'table text-left'>
+                                    <thead>
+                                    <tr>
+                                        <th class = 'col-md-2'>Method Name</th>
+                                        <th class = 'col-md-8'>Description</th>
+                                        <th class = 'col-md-2'>Input</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>SRF</td>
+                                        <td style="text-align:justify">Mainly used for determining the weights of a certain criteria set with a revised Simos' procedure. It is available as a standalone method, but it is also integrated with other methods that can make use of it.</td>
+                                        <td>
+                                            <ul style="padding:8px;">
+                                                <li>Criteria</li>
+                                                <li>White Cards</li>
+                                                <li>Ranking</li>
+                                                <li>Ratio Z</li>
+                                                <li>Decimal Places</li>
+                                                <li>Weight Type</li>
+                                            </ul>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse8">
+                            Additive Aggregation
+                            <h4 class="panel-title clearfix">
+                                <button class = 'btn btn-info' type = 'button' ng-click = 'createModule("AdditiveAggregation")' display="block">ADD</button>
+                                <button class = 'btn btn-primary' type = 'button' onclick="location.href='http://localhost:8082/content/method-catalog/additiveaggregation.html';" display="block" >References</button>
+                            </h4>
+                        </div>
+                        <div id="collapse8" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class = 'table text-left'>
+                                    <thead>
+                                    <tr>
+                                        <th class = 'col-md-2'>Method Name</th>
+                                        <th class = 'col-md-8'>Description</th>
+                                        <th class = 'col-md-2'>Input</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Additive Aggregation</td>
+                                        <td style="text-align:justify">Orders a group of options by their calculaated aggregated value based on criteria.</td>
+                                        <td>
+                                            <ul style="padding:8px;">
+                                                <li>Criteria</li>
+                                                <li>Options</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h3>Remote Methods</h3>
+
+                <div class="panel-group" id="accordion2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                            <h4 class="panel-title clearfix">
+                                Rank Alternative Values
+                                <button class = 'btn btn-info' type = 'button' ng-click = 'createModule("DivizRankAlternativeValues")' style="float:right;">ADD</button>
+                            </h4>
+                        </div>
+                        <div id="collapse6" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class = 'table text-left'>
+                                    <thead>
+                                    <tr>
+                                        <th class = 'col-md-2'>Method Name</th>
+                                        <th class = 'col-md-6'>Description</th>
+                                        <th class = 'col-md-2'>Input</th>
+                                        <th class = 'col-md-2'>Server</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Rank Alternative Values</td>
+                                        <td>Calculates the rank of alternatives via their overall values.</td>
+                                        <td>
+                                            <ul>
+                                                <li>Alternatives</li>
+                                                <li>Overall Values</li>
+                                            </ul>
+                                        </td>
+                                        <td>Remote Diviz Server</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <a>Rank Alternative Values reference and examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion2" href="#collapse7">
+                            <h4 class="panel-title clearfix">
+                                Remote Diviz Server
+                                <button class = 'btn btn-info' type = 'button' ng-click = 'createModule("DivizGenericCall")' style="float:right;">ADD</button>
+                            </h4>
+                        </div>
+                        <div id="collapse7" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class = 'table text-left'>
+                                    <thead>
+                                    <tr>
+                                        <th class = 'col-md-2'>Method Name</th>
+                                        <th class = 'col-md-6'>Description</th>
+                                        <th class = 'col-md-2'>Input</th>
+                                        <th class = 'col-md-2'>Server</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Generic Diviz Call</td>
+                                        <td>Calls the specified Diviz method defined by the user.</td>
+                                        <td>Varies per method.</td>
+                                        <td>Remote Diviz Server</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <a>Generic Diviz Call reference and examples</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SaveConfirmationModal</title>
+</head>
+<body>
+<div class = 'modal fade' id = 'save-confirmation-reload-modal' role = 'dialog'>
+    <div class = 'modal-dialog'>
+        <div class = 'modal-content'>
+            <div class = 'modal-header'>
+                <button type = 'button' class = 'close' data-dismiss = 'modal'>&times;</button>
+                <h4 class = 'modal-title'>Do you want to save the current workflow before reloading the new one?</h4>
+            </div>
+            <div class = 'modal-body'>
+                <div class = 'row'>
+                    <div class = 'col-md-2'></div>
+
+                    <div class = 'col-md-4'>
+                        <button type = 'button' class = 'btn btn-success' ng-click = 'confirmSaveReloadWorkflow()' data-dismiss = 'modal' title = 'Confirm Workflow Save'>
+                            Yes
+                        </button>
+                    </div>
+
+                    <div class = 'col-md-4'>
+                        <button type = 'button' class = 'btn btn-danger' ng-click = 'reloadData(true, reload_workflow)' data-dismiss = 'modal' title = 'Cancel Workflow Save'>
+                            No
+                        </button>
+                    </div>
+
+                    <div class = 'col-md-2'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

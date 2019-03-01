@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InquiryModal</title>
+</head>
+<body>
+<div id = 'inquiry-modal' class = 'modal fade custom-modal'  role = 'dialog' ng-controller = 'InquiryController'>
+    <div class = 'modal-dialog'>
+        <div class = 'modal-content'>
+
+            <div class = 'modal-header'>
+                <button type = 'button' class = 'close' data-dismiss = 'modal'>&times;</button>
+                <h4 class = 'modal-title'>Inquiry{{currentModule.name_id}}</h4>
+            </div>
+
+            <div class = 'modal-body'>
+                <!-- Current Round -->
+                <p class = 'header-1'>Round {{currentModule.input.current_round + 1}}</p>
+
+                <!-- Survey Subject -->
+                <p class = 'header-1'>Survey Subject</p>
+
+                <div class = 'row'>
+                    <div class = 'col-md-4'></div>
+
+                    <div id = 'inquiry-subject' class = 'col-md-4'>
+                        <input type = 'text' class = 'form-control' ng-model = 'currentModule.input.subject' ng-blur = 'blurInquirySubject()'>
+                    </div>
+
+                    <div class = 'col-md-4'></div>
+                </div>
+
+                <br>
+
+                <!-- Survey Description -->
+                <p class = 'header-1'>Survey Description</p>
+
+                <div class = 'row'>
+                    <div class = 'col-md-1'></div>
+
+                    <div class = 'col-md-10'>
+                        <textarea class = 'form-control' rows = '4' ng-model = 'currentModule.input.description'></textarea>
+                    </div>
+
+                    <div class = 'col-md-1'></div>
+                </div>
+
+                <br>
+
+                <!-- Specialists' Emails -->
+                <p class = 'header-1'>Specialists' Emails</p>
+
+                <table class = 'table table-bordered table-hover'>
+                    <thead>
+                    <tr>
+                        <th class = 'text-center'>Email Address</th>
+                        <th class = 'text-center col-md-3'>Ask Characterization Questions?</th>
+                        <th class = 'col-md-2'></th>
+                    </tr>
+                    </thead>
+                    <!-- Added Emails -->
+                    <tbody>
+                    <tr ng-repeat = 'email in currentModule.input.emails' ng-class = '{danger: email.id == deleteIdEmail}'>
+                        <td>
+                            <div id = 'inquiry-email-{{email.id}}'>
+                                <input type = 'text' class = 'form-control' ng-model = 'email.address' ng-blur = 'blurInquiryEmail(email)'>
+                            </div>
+                        </td>
+                        <td>
+                            <select class = 'form-control' ng-model = 'email.ask_characterization_questions' ng-blur = ''>
+                                <option value = '' selected disabled>--- Please Select ---</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </td>
+                        <td ng-if = 'email.id != deleteIdEmail'>
+                            <!-- Duplicate Email Button -->
+                            <button type = 'button' class = 'btn btn-info' ng-click = 'copyInquiryEmail(email)' title = 'Duplicate Email'>
+                                <span class = 'glyphicon glyphicon-duplicate'></span>
+                            </button>
+                            <!-- Delete Email Button -->
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'deleteInput(email, "Emails")' title = 'Delete Email'>
+                                <span class = 'glyphicon glyphicon-minus'></span>
+                            </button>
+                        </td>
+                        <td ng-if = 'email.id == deleteIdEmail'>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'confirmDeleteInput(email, "Emails")' title = 'Confirm Delete Email'>
+                                <span class = 'glyphicon glyphicon-ok'></span>
+                            </button>
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'cancelDeleteInput("Emails")' title = 'Cancel Delete Email'>
+                                <span class = 'glyphicon glyphicon-remove'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Form to add new email -->
+                    <tr class = 'active'>
+                        <td>
+                            <div id = 'new-inquiry-email'>
+                                <input class = 'form-control' type = 'text' ng-model = 'new_inquiry_email.address'>
+                            </div>
+                        </td>
+                        <td>
+                            <div id = 'new-inquiry-ask'>
+                                <select class = 'form-control' ng-model = 'new_inquiry_email.ask_characterization_questions'>
+                                    <option value = '' selected disabled>--- Please Select ---</option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'addInquiryEmail()' title = 'Add Email'>
+                                <span class = 'glyphicon glyphicon-plus'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br>
+
+                <!-- Characterization Questions -->
+                <p class = 'header-1'>Characterization Questions</p>
+
+                <table class = 'table table-bordered table-hover'>
+                    <thead>
+                    <tr>
+                        <th class = 'text-center'>Question</th>
+                        <th class = 'text-center'>Type</th>
+                        <th class = 'col-md-2'></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Added Characterization Questions -->
+                    <tr ng-repeat = 'open_answer_question in currentModule.input.open_answer_questions' ng-class = '{danger: open_answer_question.id == deleteIdOpenAnswerQuestion}'>
+                        <td>
+                            <div id = 'inquiry-open-answer-question-{{open_answer_question.id}}'>
+                                <input type = 'text' class = 'form-control' ng-model = 'open_answer_question.question' ng-blur = 'blurInquiryOpenAnswerQuestion(open_answer_question)'>
+                            </div>
+                        </td>
+                        <td>
+                            <select class = 'form-control' ng-model = 'open_answer_question.type' ng-blur = ''>
+                                <option value = '' selected disabled>--- Please Select ---</option>
+                                <option>Open Answer</option>
+                                <option>Multiple Choice</option>
+                            </select>
+                        </td>
+                        <td ng-if = 'open_answer_question.id != deleteIdOpenAnswerQuestion'>
+                            <!-- Duplicate Characterization Question Button -->
+                            <button type = 'button' class = 'btn btn-info' ng-click = 'copyInquiryCharacterizationQuestion(open_answer_question)' title = 'Duplicate Question'>
+                                <span class = 'glyphicon glyphicon-duplicate'></span>
+                            </button>
+                            <!-- Delete Characterization Question Button -->
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'deleteInput(open_answer_question, "Open Answer Questions")' title = 'Delete Question'>
+                                <span class = 'glyphicon glyphicon-minus'></span>
+                            </button>
+                        </td>
+                        <td ng-if = 'open_answer_question.id == deleteIdOpenAnswerQuestion'>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'confirmDeleteInput(open_answer_question, "Open Answer Questions")' title = 'Confirm Delete Open Answer Question'>
+                                <span class = 'glyphicon glyphicon-ok'></span>
+                            </button>
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'cancelDeleteInput("Open Answer Questions")' title = 'Cancel Delete Open Answer Question'>
+                                <span class = 'glyphicon glyphicon-remove'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Form to add new open answer question -->
+                    <tr class = 'active'>
+                        <td>
+                            <div id = 'new-inquiry-open-answer-question'>
+                                <input class = 'form-control' type = 'text' ng-model = 'new_inquiry_open_answer_question.question'>
+                            </div>
+                        </td>
+                        <td>
+                            <div id = 'new-inquiry-open-answer-type'>
+                                <select class = 'form-control' ng-model = 'new_inquiry_open_answer_question.type'>
+                                    <option value = '' selected disabled>--- Please Select ---</option>
+                                    <option>Open Answer</option>
+                                    <option>Multiple Choice</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'addInquiryOpenAnswerQuestion()' title = 'Add Open Answer Question'>
+                                <span class = 'glyphicon glyphicon-plus'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div ng-repeat = 'open_answer_question in currentModule.input.open_answer_questions' ng-if = 'open_answer_question.type == "Multiple Choice"'>
+                    <p class = 'header-2'>Choices of the question: {{open_answer_question.question}}</p>
+
+                    <table class = 'table table-bordered table-hover'>
+                        <thead>
+                        <tr>
+                            <th class = 'text-center'>Choices</th>
+                            <th class = 'col-md-2'></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Added Choices -->
+                        <tr ng-repeat = 'choice in open_answer_question.choices' ng-class = '{danger: open_answer_question.id == deleteIdChoice[0] && choice.id == deleteIdChoice[1]}'>
+                            <td>
+                                <div id = 'inquiry-choice-{{open_answer_question.id}}-{{choice.id}}'>
+                                    <input type = 'text' class = 'form-control' ng-model = 'choice.text' ng-blur = ''>
+                                </div>
+                            </td>
+                            <td ng-if = 'open_answer_question.id != deleteIdChoice[0] || choice.id != deleteIdChoice[1]'>
+                                <!-- Duplicate Choice Button -->
+                                <button type = 'button' class = 'btn btn-info' ng-click = 'copyInquiryChoice(open_answer_question, choice)' title = 'Duplicate Choice'>
+                                    <span class = 'glyphicon glyphicon-duplicate'></span>
+                                </button>
+                                <!-- Delete Choice Button -->
+                                <button type = 'button' class = 'btn btn-danger' ng-click = 'deleteInput([open_answer_question, choice], "Choice")' title = 'Delete Choice'>
+                                    <span class = 'glyphicon glyphicon-minus'></span>
+                                </button>
+                            </td>
+                            <td ng-if = 'open_answer_question.id == deleteIdChoice[0] && choice.id == deleteIdChoice[1]'>
+                                <button type = 'button' class = 'btn btn-success' ng-click = 'confirmDeleteInput([open_answer_question, choice], "Choice")' title = 'Confirm Delete Choice'>
+                                    <span class = 'glyphicon glyphicon-ok'></span>
+                                </button>
+                                <button type = 'button' class = 'btn btn-danger' ng-click = 'cancelDeleteInput("Choice")' title = 'Cancel Delete Choice'>
+                                    <span class = 'glyphicon glyphicon-remove'></span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Form to add new open answer question -->
+                        <tr class = 'active'>
+                            <td>
+                                <div id = 'new-inquiry-choice'>
+                                    <input class = 'form-control' type = 'text' ng-model = 'new_inquiry_choice[open_answer_question.id].text'>
+                                </div>
+                            </td>
+                            <td>
+                                <button type = 'button' class = 'btn btn-success' ng-click = 'addInquiryChoice(open_answer_question)' title = 'Add Choice'>
+                                    <span class = 'glyphicon glyphicon-plus'></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br>
+
+                <!-- Characterization Questions -->
+                <p class = 'header-2'>Ask the characterization questions to the experts that access the survey through the survey link?</p>
+
+                <div class = 'row'>
+                    <div class = 'col-md-4'></div>
+
+                    <div class = 'col-md-3'>
+                        <select class = 'form-control' ng-model = 'currentModule.input.ask_characterization_questions_survey_link'>
+                            <option value = '' selected disabled>--- Please Select ---</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+
+                <!-- Q-Sort Questions -->
+                <p class = 'header-1'>Q-Sort Questions</p>
+
+                <table class = 'table table-bordered table-hover'>
+                    <thead>
+                    <tr>
+                        <th class = 'text-center'>Title</th>
+                        <th class = 'text-center'>Description</th>
+                        <th class = 'col-md-2'></th>
+                    </tr>
+                    </thead>
+                    <!-- Added Questions -->
+                    <tbody>
+                    <tr ng-repeat = 'question in currentModule.input.questions' ng-class = '{danger: question.id == deleteIdQuestion}'>
+                        <td>
+                            <div id = 'inquiry-question-title-{{question.id}}'>
+                                <input type = 'text' class = 'form-control' ng-model = 'question.title' ng-blur = 'blurInquiryQuestionTitle(question)'>
+                            </div>
+                        </td>
+                        <td>
+                            <div id = 'inquiry-question-description-{{question.id}}'>
+                                <input type = 'text' class = 'form-control' ng-model = 'question.description' ng-blur = 'blurInquiryQuestionDescription(question)'>
+                            </div>
+                        </td>
+                        <td ng-if = 'question.id != deleteIdQuestion'>
+                            <!-- Duplicate Q-Sort Question Button -->
+                            <button type = 'button' class = 'btn btn-info' ng-click = 'copyInquiryQuestion(question)' title = 'Duplicate Q-Sort Question'>
+                                <span class = 'glyphicon glyphicon-duplicate'></span>
+                            </button>
+                            <!-- Delete Q-Sort Question Button -->
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'deleteInput(question, "Questions")' title = 'Delete Q-Sort Question'>
+                                <span class = 'glyphicon glyphicon-minus'></span>
+                            </button>
+                        </td>
+                        <td ng-if = 'question.id == deleteIdQuestion'>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'confirmDeleteInput(question, "Questions")' title = 'Confirm Delete Question'>
+                                <span class = 'glyphicon glyphicon-ok'></span>
+                            </button>
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'cancelDeleteInput("Questions")' title = 'Cancel Delete Question'>
+                                <span class = 'glyphicon glyphicon-remove'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Form to add new question -->
+                    <tr class = 'active'>
+                        <td>
+                            <div id = 'new-inquiry-question-title'>
+                                <input class = 'form-control' type = 'text' ng-model = 'new_inquiry_question.title'>
+                            </div>
+                        </td>
+                        <td>
+                            <div id = 'new-inquiry-question-description'>
+                                <input class = 'form-control' type = 'text' ng-model = 'new_inquiry_question.description'>
+                            </div>
+                        </td>
+                        <td>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'addInquiryQuestion()' title = 'Add Question'>
+                                <span class = 'glyphicon glyphicon-plus'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br>
+
+                <!-- Q-Sort Colors -->
+                <p class = 'header-1'>Q-Sort Color Scheme</p>
+
+                <form class = 'form-horizontal'>
+                    <div class = 'form-group'>
+                        <label for = 'most-important' class = 'control-label col-md-6'>Most Important Questions</label>
+                        <input type = 'color' class = 'col-md-1' ng-model = 'currentModule.input.color_scheme.most_important' style = 'margin-top: 0.5%'>
+                    </div>
+
+                    <div class = 'form-group'>
+                        <label for = 'neutral' class = 'control-label col-md-6'>Neutral Questions</label>
+                        <input type = 'color' class = 'col-md-1' ng-model = 'currentModule.input.color_scheme.neutral' style = 'margin-top: 0.5%'>
+                    </div>
+
+                    <div class = 'form-group'>
+                        <label for = 'least-important' class = 'control-label col-md-6'>Least Important Questions</label>
+                        <input type = 'color' class = 'col-md-1' ng-model = 'currentModule.input.color_scheme.least_important' style = 'margin-top: 0.5%'>
+                    </div>
+                </form>
+
+                <br>
+
+                <!-- Q-Sort Scale -->
+                <p class = 'header-1'>Q-Sort Scale</p>
+
+                <div id = 'inquiry-scale' class = 'row'>
+                    <div class = 'row col-md-offset-4 col-md-4 col-md-offset-4'>
+                        <select class = 'form-control' ng-model = 'currentModule.input.scale' ng-blur = 'blurInquiryScale(currentModule.input.scale)'>
+                            <option value = '' selected disabled>--- Please Select ---</option>
+                            <option>Default</option>
+                            <option>3 values</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Glossary -->
+                <p class = 'header-1'>Glossary</p>
+
+                <table class = 'table table-bordered table-hover'>
+                    <thead>
+                    <tr>
+                        <th class = 'text-center'>Name</th>
+                        <th class = 'text-center'>Description</th>
+                        <th class = 'col-md-2'></th>
+                    </tr>
+                    </thead>
+                    <!-- Added Concepts -->
+                    <tbody>
+                    <tr ng-repeat = 'gloss in currentModule.input.glossary' ng-class = '{danger: gloss.id == deleteIdGlossaryConcept}'>
+                        <td>
+                            <div id = 'inquiry-glossary-name-{{gloss.id}}'>
+                                <input type = 'text' class = 'form-control' ng-model = 'gloss.name' ng-blur = 'blurInquiryGlossaryName(gloss)'>
+                            </div>
+                        </td>
+                        <td>
+                            <div id = 'inquiry-glossary-description-{{gloss.id}}'>
+                                <input type = 'text' class = 'form-control' ng-model = 'gloss.description' ng-blur = 'blurInquiryGlossaryDescription(gloss)'>
+                            </div>
+                        </td>
+                        <td ng-if = 'gloss.id != deleteIdGlossaryConcept'>
+                            <!-- Duplicate Glossary Concept Button -->
+                            <button type = 'button' class = 'btn btn-info' ng-click = 'copyInquiryConcept(gloss)' title = 'Duplicate Glossary Concept'>
+                                <span class = 'glyphicon glyphicon-duplicate'></span>
+                            </button>
+                            <!-- Delete Glossary Concept Button -->
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'deleteInput(gloss, "Glossary")' title = 'Delete Glossary Concept'>
+                                <span class = 'glyphicon glyphicon-minus'></span>
+                            </button>
+                        </td>
+                        <td ng-if = 'gloss.id == deleteIdGlossaryConcept'>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'confirmDeleteInput(gloss, "Glossary")' title = 'Confirm Delete Glossary Concept'>
+                                <span class = 'glyphicon glyphicon-ok'></span>
+                            </button>
+                            <button type = 'button' class = 'btn btn-danger' ng-click = 'cancelDeleteInput("Glossary")' title = 'Cancel Delete Glossary Concept'>
+                                <span class = 'glyphicon glyphicon-remove'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- Form to add new question -->
+                    <tr class = 'active'>
+                        <td>
+                            <div id = 'new-inquiry-glossary-name'>
+                                <input class = 'form-control' type = 'text' ng-model = 'new_inquiry_glossary.name'>
+                            </div>
+                        </td>
+                        <td>
+                            <div id = 'new-inquiry-glossary-description'>
+                                <input class = 'form-control' type = 'text' ng-model = 'new_inquiry_glossary.description'>
+                            </div>
+                        </td>
+                        <td>
+                            <button type = 'button' class = 'btn btn-success' ng-click = 'addInquiryGlossary()' title = 'Add Glossary Concept'>
+                                <span class = 'glyphicon glyphicon-plus'></span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <!-- Suggestions -->
+                <p class = 'header-1'>Suggestions</p>
+
+                <label for = 'suggestions-check'>Ask for suggestions?</label>
+                <input id = 'suggestions-check' type = 'checkbox' ng-model = 'currentModule.input.suggestions.toggle'>
+
+                <form class = 'form-horizontal' ng-if = 'currentModule.input.suggestions.toggle'>
+                    <div class = 'form-group'>
+                        <label for = 'suggestions-question' class = 'col-md-3 control-label'>How to ask for the suggestions?</label>
+                        <div class = 'col-md-9'>
+                            <input id = 'suggestions-question' class = 'form-control' ng-model = 'currentModule.input.suggestions.question'>
+                        </div>
+                    </div>
+
+                    <div class = 'form-group'>
+                        <label for = 'suggestions-title' class = 'col-md-3 control-label'>Name of the suggestions' titles</label>
+                        <div class = 'col-md-9'>
+                            <input id = 'suggestions-question' class = 'form-control' ng-model = 'currentModule.input.suggestions.title'>
+                        </div>
+                    </div>
+                </form>
+
+                <hr>
+
+                <!-- Personalized Email -->
+                <p class = 'header-1'>Personalized Email</p>
+
+                <label for = 'email-check'>Personalize Email?</label>
+                <input id = 'email-check' type = 'checkbox' ng-model = 'currentModule.input.personalized_email'>
+
+                <form class = 'form-horizontal' ng-if = 'currentModule.input.personalized_email'>
+                    <div class = 'form-group'>
+                        <label for = 'email-subject' class = 'col-md-2 control-label'>Email Subject</label>
+                        <div class = 'col-md-10'>
+                            <input id = 'email-subject' class = 'form-control' ng-model = 'currentModule.input.email.subject'>
+                        </div>
+                    </div>
+
+                    <div class = 'form-group'>
+                        <label for = 'email-text' class = 'col-md-2 control-label'>Email Text</label>
+                        <div class = 'col-md-10'>
+                            <textarea id = 'email-text' rows = '3' class = 'form-control' ng-model = 'currentModule.input.email.text'></textarea>
+                        </div>
+                    </div>
+
+                    <sub>To add the personalized link to the email, just add '&lt;LINK&gt;' to the email text.</sub>
+
+                </form>
+
+                <br>
+
+                <!-- OK button -->
+                <button type = 'button' class = 'btn btn-primary' data-dismiss = 'modal'>OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

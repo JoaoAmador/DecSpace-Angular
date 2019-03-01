@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import Workflow Modal</title>
+</head>
+<body>
+<div class = 'modal fade' id = 'import-workflow-modal' role = 'dialog'>
+    <div class = 'modal-dialog'>
+        <div class = 'modal-content'>
+            <div class = 'modal-header'>
+                <button type = 'button' class = 'close' data-dismiss = 'modal'>&times;</button>
+                <h4 class = 'modal-title'>Import Workflow</h4>
+            </div>
+            <div class = 'modal-body'>
+
+                <div class = 'row'>
+                    <div class = 'col-md-4'></div>
+                    <input id = 'input-workflow' type = 'file'>
+                </div>
+
+                <br>
+
+                <div class = 'row'>
+                    <div class = 'col-md-5'></div>
+                    <button type = 'button' class = 'btn btn-primary col-md-2' ng-click = 'selectImportWorkflow()' data-dismiss = 'modal'>
+                        Import
+                    </button>
+                </div>
+
+                <p><sub>Only ZIP format is accepted.</sub></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
