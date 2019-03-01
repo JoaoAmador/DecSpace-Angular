@@ -1,0 +1,195 @@
+/*** MODULE TEMPLATES ***/
+
+.module-template {
+  position: absolute;
+
+  background-color: #d6d6c2;
+  color: black;
+
+  border: black 1px solid;
+
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+}
+
+.module-inputfile {
+  height: 46px;
+  width: 150px;
+}
+
+.module-orderby {
+  height: 61.5px;
+  width: 140px;
+}
+
+.module-additiveaggregation {
+  height: 61.5px;
+  width: 140px;
+}
+
+.module-sort {
+  height: 45.5px;
+  width: 140px;
+}
+
+.module-cat-sd {
+  height: 146.5px;
+  width: 190px;
+}
+
+.module-inquiry {
+  height: 216px;
+  width: 190px;
+}
+
+.module-srf {
+  height: 131.5px;
+  width: 170px;
+}
+
+.module-outputfile {
+  height: 45px;
+  width: 175px;
+}
+
+.module-circle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: black 1px solid;
+  padding: 0;
+}
+
+.module-circle-input {
+  background-color: yellow;
+}
+
+.module-circle-output {
+  background-color: red;
+}
+
+.module-circle-span {
+  position: absolute;
+  font-size: 12px;
+  color: black;
+}
+
+.module-circle-anchor {
+  color: black;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/*** MODALS ***/
+
+.custom-modal .modal-dialog {
+  cursor: default;
+  width: 95%;
+}
+
+/*** ALERTS ***/
+
+.custom-alert {
+  position: absolute;
+  width: 100%;
+  height: 9vh;
+  margin-top: -1%;
+  margin-left: -10%;
+}
+
+
+/*** WORKSPACE ***/
+
+#workspace {
+  height: 73vh;
+  border: black 1px solid;
+  margin-top: 0.5%;
+}
+
+#svg {
+  width: 100%;
+  height: 100%;
+}
+/*** EXECUTION MENU ARROWS ***/
+
+.blue_arrow {
+  color: blue;
+}
+
+.black_arrow {
+  color: black;
+}
+
+/*** CONNECTOR LINES ***/
+
+line {
+  stroke: green;
+  stroke-width: 3;
+}
+
+line:hover {
+  stroke-width: 5;
+}
+
+/*** CONNECTION STATUS ***/
+
+.connection-circle {
+  display: inline-block;
+  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+}
+
+.green-light {
+  background-color: #40ff00;
+}
+
+.red-light {
+  background-color: #ff3300;
+}
+
+
+/*** search ***/
+* {
+  box-sizing: border-box;
+}
+
+  /* Style the submit button */
+  form.example button {
+    float: right;
+    width: 5%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+
+  }
+
+  /* Style the search field */
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: right;
+    width: 15%;
+    background: #f1f1f1;
+    position: absolute;
+    top: 77px;
+    right: 58px;
+  }
+
+
+
+  form.example button:hover {
+    background: #0b7dda;
+  }
+
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

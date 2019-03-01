@@ -1,0 +1,93 @@
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+[ng-drag] {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+[ng-drag] {
+  width: 110px;
+  height: 50px;
+  color: black;
+  cursor: move;
+  overflow: hidden;
+  border: solid 1px black;
+}
+
+ul.draggable-objects:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+[ng-drag].dragging {
+  opacity: 0.5;
+}
+
+[ng-drop] {
+  width: 110px;
+  height: 50px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+[ng-drop].drag-enter {
+  border: solid 3px black;
+}
+
+.drop3values {
+  width: 350px;
+  display: table-cell;
+  border: solid 1px black;
+}
+
+.div_pos {
+  width: 110px;
+  margin: 5px;
+  display: inline-block;
+  text-align: center;
+}
+
+#drop-areas, #list-questions {
+  width: 1100px;
+  max-width: 1100px;
+}
+
+/*FONT SIZES OF Q-SORT CARDS TITLES*/
+.jumbo_large_font {
+  font-size: 16px;
+}
+
+.extremely_large_font {
+  font-size: 13px;
+}
+
+.very_large_font {
+  font-size: 12px;
+}
+
+.large_font {
+  font-size: 10px;
+}
+
+.medium_font {
+  font-size: 9px;
+}
+
+.small_font {
+  font-size: 8px;
+}
+
+.inquiry-custom-alert {
+  position: fixed;
+  top: 11%;
+  left: 1%;
+  width: 30%;
+}
